@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+</head>
+<body>
+    <h1>Upload Employee Data</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <input type="file" name="file" id="fileInput" onchange="updateFilename()">
+        <label for="fileInput">Choose File</label>
+        <span id="filenameDisplay"></span>
+        <br>
+        <button type="submit">Upload</button>
+    </form>
+
+    <script>
+        function updateFilename() {
+            var input = document.getElementById('fileInput');
+            var display = document.getElementById('filenameDisplay');
+            display.innerText = input.files[0].name;
+            document.getElementById('filename').value = input.files[0].name;  // Update hidden filename field
+        }
+    </script>
+</body>
+</html>

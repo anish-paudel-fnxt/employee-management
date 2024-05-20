@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Result</h1>
+    
+    <!-- Bar Chart for Male and Female Count -->
+    <h2>Male and Female Candidates Count</h2>
+    <img src="data:image/png;base64,{{ bar_chart }}" alt="Male and Female Candidates Count">
+    
+    <!-- Department Performance Chart -->
+    <h2>Department Performance</h2>
+    <img src="data:image/png;base64,{{ department_chart }}" alt="Department Performance Chart">
+
+    <!-- KPIs Meet >80% by Department -->
+    <h2>KPIs Meet &gt;80% by Department</h2>
+    <img src="data:image/png;base64,{{ pie_chart }}" alt="KPIs Meet >80% by Department">
+    
+    <div>
+        <canvas id="age-performance-chart" width="400" height="400"></canvas>
+    </div>
+
+    <!-- Total Employee Count Above Average Performance Score -->
+    <h2>Total Employees Above Average Performance Score: {{ total_above_average }}</h2>
+    
+    <!-- Top Candidate with Maximum Performance Score -->
+    <h2>Top Candidate with Maximum Performance Score:</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Performance Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for index, row in max_score_candidate.iterrows() %}
+            <tr>
+                <td>{{ row['Employee_ID'] }}</td>
+                <td>{{ row['Performance_score'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <!-- Data Table -->
+    <h2>Data Table</h2>
+    {{ tables[0]|safe }}
+    
+    <!-- Highest Performing Department -->
+    <h2>Highest Performing Department: {{ highest_performing_dept }}</h2>
+
+
+</body>
+</html>
